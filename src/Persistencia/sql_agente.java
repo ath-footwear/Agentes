@@ -89,6 +89,28 @@ public class sql_agente {
             return false;
         }
     }
+    
+    public boolean edit_Plazo(Connection c, int id, int plazo) {
+        try {
+            c.setAutoCommit(false);
+            PreparedStatement st;
+            String sql = "update agente set plazo =? where id_agente=?";
+            st = c.prepareStatement(sql);
+            st.setInt(1, plazo);
+            st.setInt(2, id);
+            st.executeUpdate();
+            c.commit();
+            return true;
+        } catch (SQLException ex) {
+            try {
+                c.rollback();
+                Logger.getLogger(sql_agente.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex1) {
+                Logger.getLogger(sql_agente.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+            return false;
+        }
+    }
 
     public boolean newagente(Connection c, Agentes a) {
         try {

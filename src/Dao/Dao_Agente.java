@@ -22,7 +22,7 @@ public class Dao_Agente implements Int_Agente {
      * Obtiene todos los agentes para su despliegue en una tabla, mostrará
      * incluso los dados de baja.
      *
-     * @param c COnexion
+     * @param c COnexion cobranza
      * @return Lista de agentes
      */
     @Override
@@ -35,7 +35,7 @@ public class Dao_Agente implements Int_Agente {
      * todo lo que tenga, siempre y cuando sea estatus 1, si no, n lo mostrará.
      * Esta funcion maneja LIKE para la consulta
      *
-     * @param c COnexion
+     * @param c COnexion cobranza
      * @param var Variable o nombre capturado
      * @return Lista de agentes
      */
@@ -47,7 +47,7 @@ public class Dao_Agente implements Int_Agente {
     /**
      * Busca un cliente en especifico y cambiará su estatus
      *
-     * @param c conexion
+     * @param c conexion cobranza
      * @param id id del agente
      * @param operacion
      * @return booelan
@@ -60,13 +60,26 @@ public class Dao_Agente implements Int_Agente {
     /**
      * Inserta nuevo agente a la bd
      *
-     * @param c conexion
+     * @param c conexion cobranza
      * @param a agente
      * @return boolean
      */
     @Override
     public boolean newagente(Connection c, Agentes a) {
         return s.newagente(c, a);
+    }
+
+    /**
+     * Edita el plazo del agente seleccionado, es formato es entero
+     *
+     * @param c conexion cobranza
+     * @param id id de agente
+     * @param plazo cantidad en dias
+     * @return boolean
+     */
+    @Override
+    public boolean Edit_Plazo(Connection c, int id, int plazo) {
+        return s.edit_Plazo(c, id, plazo);
     }
 
 }

@@ -23,4 +23,6 @@ public interface Int_Agente {
 
     public boolean newagente(Connection c, Agentes a);
 
+    public boolean Edit_Plazo(Connection c, int id, int plazo);
+
 }
