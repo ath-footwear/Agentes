@@ -25,4 +25,6 @@ public interface Int_Agente {
 
     public boolean Edit_Plazo(Connection c, int id, int plazo);
 
+    public boolean Edit_Nombre(Connection c, int id, String nombre);
+
 }

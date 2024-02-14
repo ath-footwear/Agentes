@@ -82,4 +82,17 @@ public class Dao_Agente implements Int_Agente {
         return s.edit_Plazo(c, id, plazo);
     }
 
+    /**
+     * Edita el nombre del agente seleccionado
+     *
+     * @param c conexion a cobranza
+     * @param id id del agente
+     * @param nombre Variable o nombre del agente
+     * @return booelan
+     */
+    @Override
+    public boolean Edit_Nombre(Connection c, int id, String nombre) {
+        return s.edit_Nombre(c, id, nombre);
+    }
+
 }

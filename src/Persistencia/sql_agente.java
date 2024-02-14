@@ -40,6 +40,8 @@ public class sql_agente {
                 a.setEstatus(rs.getString("estatus"));
                 arr.add(a);
             }
+            rs.close();
+            st.close();
         } catch (SQLException ex) {
             Logger.getLogger(sql_agente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -62,6 +64,8 @@ public class sql_agente {
                 a.setPlazo(rs.getInt("plazo"));
                 arr.add(a);
             }
+            rs.close();
+            st.close();
         } catch (SQLException ex) {
             Logger.getLogger(sql_agente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -78,6 +82,7 @@ public class sql_agente {
             st.setInt(2, id);
             st.executeUpdate();
             c.commit();
+            st.close();
             return true;
         } catch (SQLException ex) {
             try {
@@ -100,6 +105,30 @@ public class sql_agente {
             st.setInt(2, id);
             st.executeUpdate();
             c.commit();
+            st.close();
+            return true;
+        } catch (SQLException ex) {
+            try {
+                c.rollback();
+                Logger.getLogger(sql_agente.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex1) {
+                Logger.getLogger(sql_agente.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+            return false;
+        }
+    }
+    
+        public boolean edit_Nombre(Connection c, int id, String nombre) {
+        try {
+            c.setAutoCommit(false);
+            PreparedStatement st;
+            String sql = "update agente set nombre =? where id_agente=?";
+            st = c.prepareStatement(sql);
+            st.setString(1, nombre);
+            st.setInt(2, id);
+            st.executeUpdate();
+            c.commit();
+            st.close();
             return true;
         } catch (SQLException ex) {
             try {
@@ -126,6 +155,7 @@ public class sql_agente {
             st.setInt(5, a.getPlazo());
             st.executeUpdate();
             c.commit();
+            st.close();
             return true;
         } catch (SQLException ex) {
             try {
