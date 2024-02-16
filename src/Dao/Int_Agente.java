@@ -20,6 +20,8 @@ public interface Int_Agente {
     public ArrayList<Agentes> getagentes_var(Connection c, String var);
 
     public boolean getagentes_id(Connection c, int id, String operacion);
+    
+    public boolean getagente_Id(Connection c, int id);
 
     public boolean newagente(Connection c, Agentes a);
 

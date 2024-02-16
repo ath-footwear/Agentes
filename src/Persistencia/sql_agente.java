@@ -94,7 +94,28 @@ public class sql_agente {
             return false;
         }
     }
-    
+
+    public boolean getagente_id(Connection c, int id) {
+        boolean resp = false;
+        try {
+            ResultSet rs;
+            PreparedStatement st;
+            String sql = "select id_agente from Agente where id_agente=?";
+            st = c.prepareStatement(sql);
+            st.setInt(1, id);
+            rs = st.executeQuery();
+            while (rs.next()) {
+                resp = true;
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(sql_agente.class.getName()).log(Level.SEVERE, null, ex);
+            resp = false;
+        }
+        return resp;
+    }
+
     public boolean edit_Plazo(Connection c, int id, int plazo) {
         try {
             c.setAutoCommit(false);
@@ -117,8 +138,8 @@ public class sql_agente {
             return false;
         }
     }
-    
-        public boolean edit_Nombre(Connection c, int id, String nombre) {
+
+    public boolean edit_Nombre(Connection c, int id, String nombre) {
         try {
             c.setAutoCommit(false);
             PreparedStatement st;
@@ -145,14 +166,16 @@ public class sql_agente {
         try {
             c.setAutoCommit(false);
             PreparedStatement st;
-            String sql = "insert into agente(nombre,canal,comision,estatus,plazo)"
+            String sql = "insert into agente"
                     + " values(?,?,?,?,?)";
             st = c.prepareStatement(sql);
-            st.setString(1, a.getNombre());
-            st.setInt(2, 3);
-            st.setDouble(3, 0);
-            st.setString(4, "1");
-            st.setInt(5, a.getPlazo());
+            st.setInt(1, a.getIdagente());
+            st.setString(2, a.getNombre());
+            st.setInt(3, a.getIdcanal());
+            st.setDouble(4, 0);
+            st.setString(5, "1");
+            st.setInt(6, a.getPlazo());
+            st.setString(7, "");
             st.executeUpdate();
             c.commit();
             st.close();

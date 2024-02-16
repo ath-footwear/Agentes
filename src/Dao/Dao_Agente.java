@@ -95,4 +95,16 @@ public class Dao_Agente implements Int_Agente {
         return s.edit_Nombre(c, id, nombre);
     }
 
+    /**
+     * Busca si ya existe el agente con el numero de agente que ingresa
+     *
+     * @param c conexion cob
+     * @param id id del agente
+     * @return boolean
+     */
+    @Override
+    public boolean getagente_Id(Connection c, int id) {
+        return s.getagente_id(c, id);
+    }
+
 }
